@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Golden Star</title>
+
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@3.33.0/dist/full.css" rel="stylesheet"/>
+
+<style>
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  padding:0;
+  overflow:hidden; /* disabled until animation done */
+}
+
+/* HERO */
+.hero{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  z-index:20;
+  width:100%;
+  transition:all 0.8s ease;
+}
+
+/* When lifted */
+.hero.lifted{
+  top:20px;
+  transform:translateX(-50%);
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  font-family:'League Spartan', sans-serif;
+  font-size:6vw;
+  color:#e8c672;
+}
+
+.logo span{
+  display:inline-block;
+}
+
+.logo .space{
+  width:1vw;
+}
+
+/* STAR */
+.star{
+  width:1em;
+  height:1em;
+  background: linear-gradient(145deg, #e8c672, #ddb068);
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  margin-left:-0.1em;
+  margin-bottom:0.35em;
+  animation:stomp 1s cubic-bezier(.2,.9,.25,1) forwards;
+}
+
+@keyframes stomp{
+  0%{transform:scale(5);}
+  80%{transform:scale(0.85);}
+  100%{transform:scale(1);}
+}
+
+/* SUBTITLE */
+.subtitle{
+  margin-top:-1rem;
+  font-family:'Barlow', sans-serif;
+  font-size:2vw;
+  white-space:nowrap;
+  overflow:hidden;
+  display:inline-block;
+  opacity:0;
+  width:0;
+}
+
+/* TABS */
+.tabs-container{
+  opacity:0;
+  transition:opacity 0.5s ease;
+  margin-top:1rem;
+}
+
+/* SECTIONS */
+.section{
+  opacity:0;
+  transition:opacity 0.5s ease;
+  padding-top:260px; /* space for fixed hero */
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.section h2{
+  font-size:3vw;
+  margin-bottom:1rem;
+}
+</style>
+</head>
+
+<body data-theme="cupcake">
+
+<!-- TOGGLE -->
+<div class="fixed top-4 right-4 z-50">
+  <label class="swap swap-rotate">
+    <input type="checkbox" id="themeToggle"/>
+
+    <!-- Sun -->
+    <svg class="swap-off h-8 w-8 fill-current cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M12 4V2m0 20v-2m8-8h2M2 12h2m15.36 6.36l1.41 1.41M4.93 4.93l1.41 1.41m12.02 0l1.41-1.41M4.93 19.07l1.41-1.41M12 6a6 6 0 100 12 6 6 0 000-12z"/>
+    </svg>
+
+    <!-- Moon -->
+    <svg class="swap-on h-8 w-8 fill-current cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>
+  </label>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+
+  <div class="logo">
+    <span>G</span><span>O</span><span>L</span><span>D</span><span>E</span><span>N</span>
+    <span class="space"></span>
+    <span>S</span><span>T</span><span class="star"></span><span>R</span>
+  </div>
+
+  <div class="subtitle" id="subtitle">
+    WEBSITES THAT ARE OUT OF THIS WORLD
+  </div>
+
+  <div class="tabs-container" id="tabs">
+    <div role="tablist" class="tabs tabs-boxed justify-center">
+      <a href="#about" class="tab">ABOUT</a>
+      <a href="#products" class="tab">PRODUCTS</a>
+      <a href="#pricing" class="tab">PRICING</a>
+      <a href="#contact" class="tab">CONTACT</a>
+    </div>
+  </div>
+</div>
+
+<!-- SECTIONS -->
+<section id="about" class="section">
+  <div class="max-w-5xl w-full flex flex-col md:flex-row items-center gap-10 px-6">
+
+    <!-- Logo Circle -->
+    <div class="flex-shrink-0">
+      <div class="w-48 h-48 rounded-full overflow-hidden shadow-xl border-4 border-base-300">
+
+        <!-- Light Mode Logo -->
+        <img 
+          src="https://photos.fife.usercontent.google.com/pw/AP1GczMa0gK1gsrt8rq-jFThLMv9ZFt2zAHQH-R-QoDwFqYp-Dn6lfqY-50=w500-h500-s-no-gm?authuser=4"
+          class="block dark:hidden w-full h-full object-cover"
+        />
+
+        <!-- Dark Mode Logo -->
+        <img 
+          src="https://photos.fife.usercontent.google.com/pw/AP1GczO4tIQITsoJTpP99IPYOvGU_3n1mVGUOayNN8ZdTB8qvOjp538js7s=w500-h500-s-no-gm?authuser=4"
+          class="hidden dark:block w-full h-full object-cover"
+        />
+
+      </div>
+    </div>
+
+    <!-- Card Content -->
+    <div class="card bg-base-200 shadow-xl flex-1">
+      <div class="card-body">
+        <p>
+          Golden Star creates modern, responsive websites designed to help businesses stand out online. 
+          We focus on clean layouts, intuitive structure, and thoughtful design that balances simplicity with impact.
+          Our approach is straightforward: understand the brand, design with intention, and deliver a polished, functional result. 
+          Every project is built to be visually strong, mobile-friendly, and easy to navigate — without unnecessary complexity.
+          At Golden Star, we believe great design should feel effortless and work seamlessly across devices. 
+          The goal is simple: build websites that shine.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="products" class="section">
+  <h2>PRODUCTS</h2>
+  <p>Products content here</p>
+</section>
+
+<section id="pricing" class="section">
+  <h2>PRICING</h2>
+  <p>Pricing content here</p>
+</section>
+
+<section id="contact" class="section">
+  <h2>CONTACT</h2>
+  <p>Contact content here</p>
+</section>
+
+<script>
+/* FORCE TOP ON LOAD */
+window.onload = () => {
+  window.scrollTo(0,0);
+};
+
+/* THEME TOGGLE (ACTUALLY WORKS) */
+const toggle = document.getElementById("themeToggle");
+
+toggle.addEventListener("change", () => {
+  if(toggle.checked){
+    document.documentElement.setAttribute("data-theme","business");
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.setAttribute("data-theme","cupcake");
+    document.documentElement.classList.remove("dark");
+  }
+});
+
+
+/* TYPEWRITER */
+const subtitle = document.getElementById("subtitle");
+subtitle.style.width = subtitle.textContent.length + "ch";
+subtitle.style.opacity = 1;
+subtitle.style.transition = "width 2.5s steps(40,end)";
+setTimeout(()=>{
+  subtitle.style.width = subtitle.textContent.length + "ch";
+},100);
+
+/* LIFT HERO */
+const hero = document.getElementById("hero");
+const tabs = document.getElementById("tabs");
+const sections = document.querySelectorAll(".section");
+
+setTimeout(()=>{
+  hero.classList.add("lifted");
+},2200);
+
+/* REVEAL CONTENT */
+setTimeout(()=>{
+  tabs.style.opacity = 1;
+  sections.forEach(sec=>sec.style.opacity=1);
+  document.body.style.overflowY = "auto";
+},3000);
+</script>
+
+</body>
+</html>
